@@ -751,11 +751,12 @@
       });
 
       if (!validation.ok) {
+        // показать текст ошибки
         status.textContent = validation.message;
         status.style.color = '#f97373';
         status.style.display = 'block';
 
-        // убираем старую подсветку
+        // убрать старые подсветки
         document.querySelectorAll('.field.field-error').forEach(function (el) {
           el.classList.remove('field-error');
         });
@@ -764,6 +765,7 @@
 
         if (validation.fieldId) {
           const input = document.getElementById(validation.fieldId);
+
           if (input) {
             const fieldWrapper = input.closest('.field');
             if (fieldWrapper) {
@@ -771,19 +773,15 @@
             }
 
             if (!isMobile) {
-              // десктоп: фокус + скролл к полю
+              // ДЕСКТОП: фокус и скролл к полю
               input.focus();
               fieldWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
           }
         }
 
-        if (isMobile) {
-          // мобильный: ждём, пока спрячется клавиатура, и потом скроллим к тексту ошибки
-          setTimeout(function () {
-            status.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 300);
-        }
+        // ⚠️ МОБИЛЬНЫЙ: ничего НЕ скроллим и НЕ фокусим
+        // (иначе ошибка улетает вверх/вниз из-за клавиатуры)
 
         return;
       }
