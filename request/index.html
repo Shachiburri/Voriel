@@ -755,6 +755,9 @@
         status.style.color = '#f97373';
         status.style.display = 'block';
 
+        // считаем, что мобильный — до 768px
+        const isMobile = window.innerWidth <= 768;
+
         if (validation.fieldId) {
           const input = document.getElementById(validation.fieldId);
           if (input) {
@@ -762,8 +765,19 @@
             if (fieldWrapper) {
               fieldWrapper.classList.add('field-error');
             }
-            input.focus();
+
+            if (!isMobile) {
+              // на десктопе: фокус + скролл к полю
+              input.focus();
+              fieldWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
           }
+        }
+
+        if (isMobile) {
+          // на телефоне: скроллим к сообщению об ошибке,
+          // оно большое и внизу формы — его точно видно
+          status.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         return;
