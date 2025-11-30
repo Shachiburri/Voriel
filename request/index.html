@@ -204,6 +204,17 @@
       background: #09090b;
     }
 
+    .field-error input,
+    .field-error select,
+    .field-error textarea {
+      border-color: #f97373;
+      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.7);
+    }
+
+    .field-error label {
+      color: #fecaca;
+    }
+
     form textarea {
       min-height: 80px;
       resize: vertical;
@@ -585,7 +596,7 @@
               required></textarea>
           </div>
 
-          <p id="form-status" class="small-text" style="display:none;"></p>
+          <p id="form-status" class="small-text" style="display:none;" role="alert" aria-live="polite"></p>
 
           <button type="submit" class="button-primary" id="submit-button">
             <span class="button-label">Send Request</span>
@@ -734,10 +745,27 @@
       status.style.display = 'none';
 
       const validation = validateForm();
+
+      document.querySelectorAll('.field.field-error').forEach(function (el) {
+        el.classList.remove('field-error');
+      });
+
       if (!validation.ok) {
         status.textContent = validation.message;
         status.style.color = '#f97373';
         status.style.display = 'block';
+
+        if (validation.fieldId) {
+          const input = document.getElementById(validation.fieldId);
+          if (input) {
+            const fieldWrapper = input.closest('.field');
+            if (fieldWrapper) {
+              fieldWrapper.classList.add('field-error');
+            }
+            input.focus();
+          }
+        }
+
         return;
       }
 
@@ -796,6 +824,7 @@
       const description = form.description.value.trim();
 
       const phoneDigits = phoneRaw.replace(/\D/g, '');
+      let normalizedPhone = phoneDigits;
 
       const MIN_DESC = 10;
       const MAX_DESC = 500;
@@ -863,12 +892,13 @@
       const namePattern = /^[a-zA-Zа-яА-ЯёЁ .'-]+$/;
 
       if (!name) {
-        return { ok: false, message: 'Please enter your name.' };
+        return { ok: false, fieldId: 'name', message: 'Please enter your name.' };
       }
 
       if (name.length < MIN_NAME || name.length > MAX_NAME) {
         return {
           ok: false,
+          fieldId: 'name',
           message: `Name must be between ${MIN_NAME} and ${MAX_NAME} characters.`
         };
       }
@@ -876,37 +906,57 @@
       if (!namePattern.test(name)) {
         return {
           ok: false,
+          fieldId: 'name',
           message: 'Name can only include letters, spaces, hyphens, apostrophes, and periods.'
         };
       }
-      if (phoneDigits.length !== 10) {
-        return { ok: false, message: 'Invalid phone number. Use 10 digits.' };
+
+      if (phoneDigits.length === 11 && phoneDigits[0] === '1') {
+        normalizedPhone = phoneDigits.slice(1);
+      } else if (phoneDigits.length !== 10) {
+        return {
+          ok: false,
+          fieldId: 'phone',
+          message: 'Invalid phone number. Use a U.S. number (10 digits).'
+        };
       }
 
       if (!/^\d{5}$/.test(zip)) {
-        return { ok: false, message: 'Invalid ZIP code. Use 5 digits.' };
+        return {
+          ok: false,
+          fieldId: 'zip',
+          message: 'Invalid ZIP code. Use 5 digits.'
+        };
       }
 
       if (!allowedZips.includes(zip)) {
         return {
           ok: false,
+          fieldId: 'zip',
           message: 'Sorry, Voriel is not available in this ZIP yet.'
         };
       }
 
       if (!service) {
-        return { ok: false, message: 'Please select a service.' };
+        return {
+          ok: false,
+          fieldId: 'service',
+          message: 'Please select a service.'
+        };
       }
 
       if (description.length < MIN_DESC) {
         return {
           ok: false,
+          fieldId: 'description',
           message: `Description is too short. Minimum ${MIN_DESC} characters.`
         };
       }
+
       if (description.length > MAX_DESC) {
         return {
           ok: false,
+          fieldId: 'description',
           message: `Description is too long. Maximum ${MAX_DESC} characters allowed.`
         };
       }
@@ -915,7 +965,7 @@
         ok: true,
         values: {
           name,
-          phone: phoneDigits,
+          phone: normalizedPhone,
           zip,
           service,
           description
