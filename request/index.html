@@ -761,28 +761,18 @@
           el.classList.remove('field-error');
         });
 
-        const isMobile = window.innerWidth <= 768;
-
+        // подсветить нужное поле
         if (validation.fieldId) {
           const input = document.getElementById(validation.fieldId);
-
           if (input) {
             const fieldWrapper = input.closest('.field');
             if (fieldWrapper) {
               fieldWrapper.classList.add('field-error');
             }
-
-            if (!isMobile) {
-              // ДЕСКТОП: фокус и скролл к полю
-              input.focus();
-              fieldWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
           }
         }
 
-        // ⚠️ МОБИЛЬНЫЙ: ничего НЕ скроллим и НЕ фокусим
-        // (иначе ошибка улетает вверх/вниз из-за клавиатуры)
-
+        // НИ ФОКУСА, НИ СКРОЛЛА НИГДЕ
         return;
       }
 
