@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Voriel – Privacy Policy</title>
-    <meta name="description" content="Learn how Voriel collects, uses, and protects your personal information. Read our full Privacy Policy for home service users.">
+    <meta name="description"
+        content="Learn how Voriel collects, uses, and protects your personal information. Read our full Privacy Policy for home service users.">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -25,6 +26,60 @@
             max-width: 900px;
             margin: auto;
             font-size: clamp(15px, 1.15vw, 19px);
+        }
+
+        header {
+            padding: 18px 24px;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid rgba(39, 39, 47, 0.9);
+            backdrop-filter: blur(10px);
+            background: rgba(24, 24, 27, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-inner {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .brand-logo {
+            height: 26px;
+            width: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .header-tagline {
+            color: #a1a1aa;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 820px) {
+            .header-tagline {
+                display: none;
+            }
         }
 
         h1 {
@@ -85,6 +140,19 @@
 </head>
 
 <body>
+
+    <header>
+        <div class="header-inner">
+            <a href="/" class="brand">
+                <img src="logo-voriel.png" alt="Voriel logo" class="brand-logo" />
+                <div class="brand-name">VORIEL</div>
+            </a>
+
+            <div class="header-tagline">
+                Local home services · Triangle, NC
+            </div>
+        </div>
+    </header>
 
     <h1>Privacy Policy</h1>
 
