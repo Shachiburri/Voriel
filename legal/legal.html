@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Voriel – Legal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
+            background: #050505;
+            color: #f9fafb;
+            line-height: 1.6;
+            padding: 32px 20px 40px;
+            max-width: 900px;
+            margin: auto;
+            font-size: clamp(15px, 1.15vw, 19px);
+        }
+
+        h1 {
+            font-size: clamp(28px, 3vw, 42px);
+            margin-bottom: 14px;
+            color: #fbbf24;
+            font-weight: 800;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #d4d4d8;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .card {
+            border-radius: 14px;
+            border: 1px solid #27272f;
+            background: #18181b;
+            padding: 16px 18px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: clamp(18px, 1.7vw, 22px);
+            color: #fde68a;
+        }
+
+        .card-desc {
+            font-size: clamp(14px, 1.1vw, 18px);
+            color: #d4d4d8;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            color: #fbbf24;
+            text-decoration: underline;
+            font-weight: 600;
+            font-size: clamp(14px, 1.1vw, 18px);
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: clamp(13px, 1vw, 17px);
+            color: #a1a1aa;
+        }
+
+        a {
+            color: #fbbf24;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            color: #9ca3af;
+            padding: 20px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-size: clamp(15px, 1.2vw, 19px);
+        }
+
+        footer a {
+            color: #fbbf24;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-bottom: 40px;
+            }
+
+            footer {
+                margin-bottom: 90px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Legal</h1>
+
+    <p>
+        This page provides access to the legal documents that govern your use of the Voriel website and platform.
+        Please review these documents carefully before submitting any requests or using our services.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-title">Disclaimer</div>
+            <p class="card-desc">
+                Explains Voriel’s role as a technology and lead-generation platform, and clarifies that all work is
+                performed
+                by independent third-party contractors.
+            </p>
+            <a href="/disclaimer">View Disclaimer →</a>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Terms of Service</div>
+            <p class="card-desc">
+                Describes the rules for using the Voriel platform, including limitations of liability, user
+                responsibilities,
+                and contractor interactions.
+            </p>
+            <a href="/terms">View Terms of Service →</a>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Privacy Policy</div>
+            <p class="card-desc">
+                Explains what information we collect, how we use it, how it may be shared with independent contractors,
+                and
+                your privacy rights.
+            </p>
+            <a href="/privacy">View Privacy Policy →</a>
+        </div>
+    </div>
+
+    <p class="note">
+        By using the Voriel platform, you acknowledge that you have read and agree to the Disclaimer, Terms of Service,
+        and Privacy Policy.
+    </p>
+
+    <footer>
+        © <span id="year"></span> Voriel. All rights reserved.
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
