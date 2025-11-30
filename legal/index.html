@@ -18,13 +18,11 @@
         }
 
         body {
+            padding: 0 0 40px;
             font-family: "Nunito", sans-serif;
             background: #050505;
             color: #f9fafb;
             line-height: 1.6;
-            padding: 32px 20px 40px;
-            max-width: 900px;
-            margin: auto;
             font-size: clamp(15px, 1.15vw, 19px);
         }
 
@@ -74,6 +72,12 @@
         .header-tagline {
             color: #a1a1aa;
             white-space: nowrap;
+        }
+
+        .page-wrapper {
+            max-width: 900px;
+            margin: 32px auto;
+            padding: 0 20px;
         }
 
         @media (max-width: 820px) {
@@ -179,55 +183,57 @@
             </div>
         </div>
     </header>
+    <div class="page-wrapper">
+        <h1>Legal</h1>
 
-    <h1>Legal</h1>
+        <p>
+            This page provides access to the legal documents that govern your use of the Voriel website and platform.
+            Please review these documents carefully before submitting any requests or using our services.
+        </p>
 
-    <p>
-        This page provides access to the legal documents that govern your use of the Voriel website and platform.
-        Please review these documents carefully before submitting any requests or using our services.
-    </p>
+        <div class="cards">
+            <div class="card">
+                <div class="card-title">Disclaimer</div>
+                <p class="card-desc">
+                    Explains Voriel’s role as a technology and lead-generation platform, and clarifies that all work is
+                    performed
+                    by independent third-party contractors.
+                </p>
+                <a href="/disclaimer">View Disclaimer →</a>
+            </div>
 
-    <div class="cards">
-        <div class="card">
-            <div class="card-title">Disclaimer</div>
-            <p class="card-desc">
-                Explains Voriel’s role as a technology and lead-generation platform, and clarifies that all work is
-                performed
-                by independent third-party contractors.
-            </p>
-            <a href="/disclaimer">View Disclaimer →</a>
+            <div class="card">
+                <div class="card-title">Terms of Service</div>
+                <p class="card-desc">
+                    Describes the rules for using the Voriel platform, including limitations of liability, user
+                    responsibilities,
+                    and contractor interactions.
+                </p>
+                <a href="/terms">View Terms of Service →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Privacy Policy</div>
+                <p class="card-desc">
+                    Explains what information we collect, how we use it, how it may be shared with independent
+                    contractors,
+                    and
+                    your privacy rights.
+                </p>
+                <a href="/privacy">View Privacy Policy →</a>
+            </div>
         </div>
 
-        <div class="card">
-            <div class="card-title">Terms of Service</div>
-            <p class="card-desc">
-                Describes the rules for using the Voriel platform, including limitations of liability, user
-                responsibilities,
-                and contractor interactions.
-            </p>
-            <a href="/terms">View Terms of Service →</a>
-        </div>
+        <p class="note">
+            By using the Voriel platform, you acknowledge that you have read and agree to the Disclaimer, Terms of
+            Service,
+            and Privacy Policy.
+        </p>
 
-        <div class="card">
-            <div class="card-title">Privacy Policy</div>
-            <p class="card-desc">
-                Explains what information we collect, how we use it, how it may be shared with independent contractors,
-                and
-                your privacy rights.
-            </p>
-            <a href="/privacy">View Privacy Policy →</a>
-        </div>
+        <footer>
+            © <span id="year"></span> Voriel. All rights reserved.
+        </footer>
     </div>
-
-    <p class="note">
-        By using the Voriel platform, you acknowledge that you have read and agree to the Disclaimer, Terms of Service,
-        and Privacy Policy.
-    </p>
-
-    <footer>
-        © <span id="year"></span> Voriel. All rights reserved.
-    </footer>
-
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
