@@ -755,7 +755,11 @@
         status.style.color = '#f97373';
         status.style.display = 'block';
 
-        // считаем, что мобильный — до 768px
+        // убираем старую подсветку
+        document.querySelectorAll('.field.field-error').forEach(function (el) {
+          el.classList.remove('field-error');
+        });
+
         const isMobile = window.innerWidth <= 768;
 
         if (validation.fieldId) {
@@ -767,7 +771,7 @@
             }
 
             if (!isMobile) {
-              // на десктопе: фокус + скролл к полю
+              // десктоп: фокус + скролл к полю
               input.focus();
               fieldWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
@@ -775,9 +779,10 @@
         }
 
         if (isMobile) {
-          // на телефоне: скроллим к сообщению об ошибке,
-          // оно большое и внизу формы — его точно видно
-          status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // мобильный: ждём, пока спрячется клавиатура, и потом скроллим к тексту ошибки
+          setTimeout(function () {
+            status.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 300);
         }
 
         return;
