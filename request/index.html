@@ -797,11 +797,8 @@
         });
 
         if (response.ok) {
-          form.reset();
-          status.textContent =
-            'Thank you. We received your request and will route it to local pros shortly.';
-          status.style.color = '#4ade80';
-          status.style.display = 'block';
+          window.location.href = '/request-confirmed/';
+          return;
         } else {
           status.textContent =
             'Something went wrong. Please try again or contact us directly.';
